@@ -9,21 +9,21 @@ module Advent
 
   @instruction_array.each { |instruction|
     if (instruction[0] == "R")
-      @dir = @dir + 90
+      @dir += 90
     elsif (instruction[0] == "L")
-      @dir = @dir - 90
+      @dir -= 90
     end
 
     @distance = instruction[1..3].to_i
 
     if (@dir == 0 || @dir % 360 == 0)
-      @y = @y + @distance
+      @y += @distance
     elsif (@dir % 270 == 0)
-      @x = @x - @distance
+      @x -= @distance
     elsif (@dir % 180 == 0)
-      @y = @y - @distance
+      @y -= @distance
     elsif (@dir % 90 == 0)
-      @x = @x + @distance
+      @x += @distance
     end
   }
 
