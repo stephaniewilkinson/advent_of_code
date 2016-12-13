@@ -6,11 +6,7 @@ module Advent
   @dir = 360
 
   @instruction_array.each { |instruction|
-    if (instruction[0] == "R")
-      @dir += 90
-    elsif (instruction[0] == "L")
-      @dir -= 90
-    end
+    instruction[0] == "R" ? @dir += 90 : @dir -= 90
 
     @distance = instruction[1..3].to_i
 
@@ -26,5 +22,6 @@ module Advent
       @x += @distance
     end
   }
+
   puts "final coords: #{@x}, #{@y}"
 end
