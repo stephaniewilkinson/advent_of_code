@@ -4,6 +4,7 @@ module Advent
   @x = 0
   @y = 0
   @dir = 360
+  @coords_visited = [[0,0]]
 
   @instruction_array.each { |instruction|
     instruction[0] == "R" ? @dir += 90 : @dir -= 90
@@ -12,14 +13,32 @@ module Advent
 
     @dir %= 360
 
-    if (@dir == 0)
-      @y += @distance
-    elsif (@dir == 270)
-      @x -= @distance
-    elsif (@dir == 180)
-      @y -= @distance
-    elsif (@dir == 90)
-      @x += @distance
+    @distance.times do
+      if (@dir == 0)
+        @y += 1
+        if @coords_visited.include? [@x, @y]
+          puts "repeat coords are #{@x}, #{@y}"
+        end
+        @coords_visited.push [@x, @y]
+      elsif (@dir == 270)
+        @x -= 1
+        if @coords_visited.include? [@x, @y]
+          puts "repeat coords are #{@x}, #{@y}"
+        end
+        @coords_visited.push [@x, @y]
+      elsif (@dir == 180)
+        @y -= 1
+        if @coords_visited.include? [@x, @y]
+          puts "repeat coords are #{@x}, #{@y}"
+        end
+        @coords_visited.push [@x, @y]
+      elsif (@dir == 90)
+        @x += 1
+        if @coords_visited.include? [@x, @y]
+          puts "repeat coords are #{@x}, #{@y}"
+        end
+        @coords_visited.push [@x, @y]
+      end
     end
   }
 
