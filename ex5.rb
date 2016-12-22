@@ -1,6 +1,7 @@
+require 'pry'
+
 module Advent
-  @triplets = "
-    4   21  894
+  @triplets = "    4   21  894
   419  794  987
   424  797  125
   651  305  558
@@ -1907,9 +1908,31 @@ module Advent
    50   94    8
   554  421  618
   338  274  638
-  346  188  656".split "\n"
+  346  188  656".split "\n  "
 
-  @triplets.each_with_index {|val, index|
-    puts index
+  binding.pry
+
+  @a
+  @b
+  @c
+  @valid_triangles = 0
+
+  @triplets.each {|val|
+    val = val.split " "
+
+    @a = val[0].to_i
+    @b = val[1].to_i
+    @c = val[2].to_i
+
+    puts "a is", @a
+    puts "b is ", @b
+    puts "c is ", @c
+
+
+    if (@a < (@b + @c) && @b < (@a + @c) && @c < (@a + @b))
+      @valid_triangles +=1
+    end
   }
+
+  puts "valid triangles", @valid_triangles
 end
